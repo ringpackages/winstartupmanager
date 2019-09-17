@@ -1,4 +1,7 @@
-# Win Startup Manager
+Win Startup Manager
+===================
+
+Author : Majdi Sobain
 
 ![WinStartupManager](imgs/WinStartupManager.jpg)
 
