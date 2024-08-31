@@ -48,6 +48,7 @@ aPackageInfo = [
 		"applications/winstartupmanager/forms/winstartupmanagerView.ring",
 		"applications/winstartupmanager/imgs/UsageImg.jpg",
 		"applications/winstartupmanager/imgs/WinStartupManager.jpg",
+		"applications/winstartupmanager/imgs/icon.png",
 		"applications/winstartupmanager/LICENSE",
 		"applications/winstartupmanager/README.md",
 		"applications/winstartupmanager/WinStartupManager.ring"
