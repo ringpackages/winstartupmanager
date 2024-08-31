@@ -35,13 +35,13 @@ ProgramItems = NULL
 
 Func Main
 
-ProgramItems = RetrieveAppEntries() 
-# ProgramItems = [ [ID, ProgramName, ProgramPath, Activation, HKEY, Wow64tree] ]
+	ProgramItems = RetrieveAppEntries() 
+	# ProgramItems = [ [ID, ProgramName, ProgramPath, Activation, HKEY, Wow64tree] ]
 
 	new App {
 		StyleFusion()
-		open_window(:winstartupmanagerController)
-		WinObj = Last_Window() {
+		openWindow(:winstartupmanagerController)
+		WinObj = LastWindow() {
 
 		SortProItems(2)
 		AddItemsToTable(ProgramItems)

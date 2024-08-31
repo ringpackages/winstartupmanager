@@ -7,7 +7,7 @@ import System.GUI
 if IsMainSourceFile() {
 	new App {
 		StyleFusion()
-		open_window(:winstartupmanagerController)
+		openWindow(:winstartupmanagerController)
 		exec()
 	}
 }
@@ -15,7 +15,7 @@ if IsMainSourceFile() {
 class winstartupmanagerController from windowsControllerParent
 
 	oView = new winstartupmanagerView
-
+	setWinIcon(oView.win,"imgs/icon.png")
 
 Func LoadWinAction
 	oView.TableWidget1 {
@@ -27,8 +27,8 @@ Func LoadWinAction
 
 Func AddProgAction
 	if not SubWinOpened
-		Open_window( :addeditentryController )
-		SubWinObj = Last_Window() {
+		openWindow( :addeditentryController )
+		SubWinObj = LastWindow() {
 			SetParentObject(WinObj)
 		
 			PrepareWin("Add Program", "", "", "", HKCU, True)
@@ -54,16 +54,6 @@ Func retAddProg retSubWinObj
 Func EditProgAction
 	oView {
 		curID = Number(TableWidget1.item(TableWidget1.currentrow(), 4).text())
-	/*	stat = 0
-		cCode = 'stat = CB@ID.Checkstate()'
-		cCode = substr(cCode, "@ID", String(curID))
-		eval(cCode)
-		if not stat
-			new qMessageBox(oView.win) {
-					warning(self, "Warning", "Cannot edit deactivated program", QMessageBox_Ok, QMessageBox_NoButton)
-					}
-			Return
-		ok	*/
 	}
 
 	lappName = ProgramItems[Find(ProgramItems, curID, 1)][2]
@@ -75,8 +65,8 @@ Func EditProgAction
 	lpath = trim(left(lappPath, substr(Lower(lappPath), ".exe") +3))
 	largs = trim(right(lappPath, len(lappPath) - substr(Lower(lappPath), ".exe") -3))
 	if not SubWinOpened
-		Open_window( :addeditentryController )
-		SubWinObj = Last_Window() {
+		openWindow( :addeditentryController )
+		SubWinObj = LastWindow() {
 			SetParentObject(WinObj)
 			
 			PrepareWin("Edit Program", lappName, lpath, largs, ProgramItems[Find(Programitems, curID,1)][5], ProgramItems[Find(Programitems, curID,1)][4])
@@ -139,7 +129,9 @@ Func AddItemsToTable ItemsList
 Func newCheckBox nID, status 
 	roWidget = NULL
 	oView {
-		sCode = '	AddAttribute(Self, "CB#nID") 
+		sCode = '	if ! isAttribute(Self, "CB#nID")	
+					AddAttribute(Self, "CB#nID") 
+				ok
 				CB#nID = new checkbox(win) { 
 				move(0,0) 
 				resize(15,24) 
